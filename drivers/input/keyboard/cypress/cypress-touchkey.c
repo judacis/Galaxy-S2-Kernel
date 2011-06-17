@@ -32,6 +32,9 @@
 #ifdef CONFIG_CPU_FREQ
 /* #include <mach/cpu-freq-v210.h> */
 #endif
+#ifdef CONFIG_GENERIC_BLN
+#include <linux/bln.h>
+#endif
 
 #include <linux/regulator/consumer.h>
 #include <linux/regulator/driver.h>
@@ -454,8 +457,18 @@ static int melfas_touchkey_early_suspend(struct early_suspend *h)
 	s3c_gpio_setpull(_3_GPIO_TOUCH_INT, S3C_GPIO_PULL_DOWN);
 #endif
 
-	/* disable ldo18 */
-	touchkey_led_ldo_on(0);
+#ifdef CONFIG_GENERIC_BLN
+	/*
+	 * Disallow powering off the touchkey controller
+	 * while a led notification is ongoing
+	 */
+	if (!bln_is_ongoing()) {
+#else
+	if (1) {
+#endif
+		/* disable ldo18 */
+		touchkey_led_ldo_on(0);
+	}
 
 	/* disable ldo11 */
 	touchkey_ldo_on(0);
@@ -463,6 +476,24 @@ static int melfas_touchkey_early_suspend(struct early_suspend *h)
 
 	return 0;
 }
+
+static void melfas_enable_touchkey_backlights(void) {
+	uint8_t val = 1;
+
+	touchkey_led_ldo_on(1);
+	i2c_touchkey_write(&val, sizeof(val));
+}
+
+static void melfas_disable_touchkey_backlights(void) {
+	uint8_t val = 0;
+
+	i2c_touchkey_write(&val, sizeof(val));
+}
+
+static struct bln_implementation cypress_touchkey_bln = {
+	.enable = melfas_enable_touchkey_backlights,
+	.disable = melfas_disable_touchkey_backlights,
+};
 
 static int melfas_touchkey_late_resume(struct early_suspend *h)
 {
@@ -1057,6 +1088,10 @@ static int __init touchkey_init(void)
 
 #ifdef TEST_JIG_MODE
 	i2c_touchkey_write(&get_touch, 1);
+#endif
+
+#ifdef CONFIG_GENERIC_BLN
+	register_bln_implementation(&cypress_touchkey_bln);
 #endif
 
 	return ret;

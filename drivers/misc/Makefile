@@ -44,3 +44,4 @@ obj-$(CONFIG_CMA_DEVICE)	+= cma-dev.o
 
 obj-$(CONFIG_PN544)		+= pn544.o
 obj-$(CONFIG_SEC_DEV_JACK)	+= sec_jack.o
+obj-$(CONFIG_GENERIC_BLN) += bln.o
