@@ -1,0 +1,17 @@
+=== About this kernel ===
+
+Features:
+    Latest 2.6.35.x base (current: .13).
+    Automated per tty task groups.
+    BacklightNotification.
+    Tweaked Deadline I/O scheduler.
+    Patch to address issue with second core forgetting min/max clock frequency.
+    Support for /system/etc/init.d scripts.
+
+Credits:
+    Mike Galbraith (Automated per tty task groups)
+    nedlar and akent (BLN)
+    thalamus_ (Tweaked Deadline I/O scheduler)
+    supercurio (For making sources available on github)
+
+renan-
