@@ -7,11 +7,12 @@ Features:
     Tweaked Deadline I/O scheduler.
     Patch to address issue with second core forgetting min/max clock frequency.
     Support for /system/etc/init.d scripts.
+    "Insecure" mode (-> root).
 
 Credits:
     Mike Galbraith (Automated per tty task groups)
     nedlar and akent (BLN)
-    thalamus_ (Tweaked Deadline I/O scheduler)
+    thalamus (Tweaked Deadline I/O scheduler)
     supercurio (For making sources available on github)
 
 renan-
