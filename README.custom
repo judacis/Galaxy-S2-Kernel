@@ -13,7 +13,7 @@ Features:
 
 Credits:
     Mike Galbraith (Automated per tty task groups)
-    nedlar and akent (BLN)
+    neldar and akent (BLN)
     supercurio (For making sources available on github)
     thalamus (Tweaked deadline I/O scheduler and optimized toolchain)
 
