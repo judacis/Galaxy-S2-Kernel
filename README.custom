@@ -4,15 +4,17 @@ Features:
     Latest 2.6.35.x base (current: .13).
     Automated per tty task groups.
     BacklightNotification.
-    Tweaked Deadline I/O scheduler.
+    Tweaked deadline I/O scheduler.
+    CIFS support.
     Patch to address issue with second core forgetting min/max clock frequency.
     Support for /system/etc/init.d scripts.
     "Insecure" mode (-> root).
+    Built with a toolchain optimized for cortex-a9 and neon fpu.
 
 Credits:
     Mike Galbraith (Automated per tty task groups)
     nedlar and akent (BLN)
-    thalamus (Tweaked Deadline I/O scheduler)
     supercurio (For making sources available on github)
+    thalamus (Tweaked deadline I/O scheduler and optimized toolchain)
 
 renan-
