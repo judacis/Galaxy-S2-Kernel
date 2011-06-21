@@ -53,6 +53,9 @@
 
 #include <wlioctl.h>
 
+/* For struct pktq */
+#include <bcmutils.h>
+
 /* Forward decls */
 struct dhd_bus;
 struct dhd_prot;
