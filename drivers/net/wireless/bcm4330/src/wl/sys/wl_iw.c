@@ -1800,7 +1800,7 @@ iwpriv_set_ap_config(struct net_device *dev,
             char *ext)
 {
 	int res = 0;
-	char  *extra = NULL;
+	char *extra = NULL;
 	struct ap_profile *ap_cfg = &my_ap;
 
 	WL_TRACE(("> Got IWPRIV SET_AP IOCTL: info->cmd:%x, info->flags:%x, u.data:%p, u.len:%d\n",
@@ -1808,7 +1808,6 @@ iwpriv_set_ap_config(struct net_device *dev,
 		wrqu->data.pointer, wrqu->data.length));
 
 	if (wrqu->data.length != 0) {
-
 		char *str_ptr;
 
 		if (!(extra = kmalloc(wrqu->data.length+1, GFP_KERNEL)))
@@ -1825,20 +1824,19 @@ iwpriv_set_ap_config(struct net_device *dev,
 		memset(ap_cfg, 0, sizeof(struct ap_profile));
 
 		/*  parse param string and write extracted values into the ap_profile structure */
-
 		str_ptr = extra;
 
-		if ((res = init_ap_profile_from_string(extra, ap_cfg)) < 0) {
+		if ((res = init_ap_profile_from_string(str_ptr, ap_cfg)) < 0) {
 			WL_ERROR(("%s failed to parse %d\n", __FUNCTION__, res));
 			kfree(extra);
 			return -1;
 		}
 
 	} else {
-	 /* len is zero */
-	  WL_ERROR(("IWPRIV argument len = 0 \n"));
-	  return -1;
-	}
+        /* len is zero */
+        WL_ERROR(("IWPRIV argument len = 0 \n"));
+        return -1;
+    }
 
 	if ((res = set_ap_cfg(dev, ap_cfg)) < 0)
 		WL_ERROR(("%s failed to set_ap_cfg %d\n", __FUNCTION__, res));
@@ -1949,8 +1947,8 @@ iwpriv_set_mac_filters(struct net_device *dev,
 			return -ENOMEM;
 
 		if (copy_from_user(extra, wrqu->data.pointer, wrqu->data.length)) {
-		ret = -EFAULT;
-		goto exit_proc;
+		    ret = -EFAULT;
+		    goto exit_proc;
 		}
 
 		extra[wrqu->data.length] = 0;
@@ -1963,9 +1961,9 @@ iwpriv_set_mac_filters(struct net_device *dev,
 		str_ptr = extra;
 
 		/*  make sure that 1st token 'ASCII_CMD' */
-	if (get_parameter_from_string(&str_ptr, "ASCII_CMD=", PTYPE_STRING, sub_cmd, 15) != 0) {
-		 goto exit_proc;
-	   }
+        if (get_parameter_from_string(&str_ptr, "ASCII_CMD=", PTYPE_STRING, sub_cmd, 15) != 0) {
+            goto exit_proc;
+        }
 
 #define MAC_FILT_MAX 8
 	   /* and  sub_cmd  WHITE list or black list */
