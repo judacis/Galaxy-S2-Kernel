@@ -2190,7 +2190,7 @@ wl_iw_set_mode(
 
 #ifdef CONFIG_MACH_C1
 	WL_ERROR(("%s: SIOCSIWMODE MODE %d SSS \n", dev->name, *uwrq));
-	if (error = dev_wlc_ioctl(dev, WLC_SET_INFRA, &infra, sizeof(infra)))
+	if ((error = dev_wlc_ioctl(dev, WLC_SET_INFRA, &infra, sizeof(infra))))
 		return error;
 #else
 	error = dev_wlc_ioctl(dev, WLC_SET_INFRA, &infra, sizeof(infra));
