@@ -9,12 +9,11 @@ Features:
     Patch to address issue with second core forgetting min/max clock frequency.
     Support for /system/etc/init.d scripts.
     "Insecure" mode (-> root).
-    Built with a toolchain optimized for cortex-a9 and neon fpu.
 
 Credits:
     Mike Galbraith (Automated per tty task groups)
     neldar and akent (BLN)
     supercurio (For making sources available on github)
-    thalamus (Tweaked deadline I/O scheduler and optimized toolchain)
+    thalamus (Tweaked deadline I/O scheduler)
 
 renan-
