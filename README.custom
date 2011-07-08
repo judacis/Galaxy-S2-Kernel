@@ -1,19 +1,25 @@
 === About this kernel ===
 
 Features:
-    Latest 2.6.35.x base (current: .13).
-    Automated per tty task groups.
-    BacklightNotification.
-    Tweaked deadline I/O scheduler.
-    CIFS support.
-    Patch to address issue with second core forgetting min/max clock frequency.
-    Support for /system/etc/init.d scripts.
-    "Insecure" mode (-> root).
+	Latest 2.6.35.x base (current: .13).
+	Automated per tty task groups.
+	Tweaked deadline I/O scheduler.
+	CIFS support.
+	FUSE module support.
+	Patch to address issue with second core forgetting min/max clock frequency.
+	Support for /system/etc/init.d scripts.
+	Clockwork mod Recovery (4.0.0.2).
+	Automatic Root on boot (see /initramfs).
 
+TODO:
+	Finish exFAT (fat64) kernel module.
+	Kernel Backlight flash.
+	
+   
 Credits:
     Mike Galbraith (Automated per tty task groups)
     neldar and akent (BLN)
     supercurio (For making sources available on github)
     thalamus (Tweaked deadline I/O scheduler)
 
-renan-
+Judacis
